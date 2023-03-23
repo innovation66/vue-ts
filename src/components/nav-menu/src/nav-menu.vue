@@ -55,6 +55,7 @@ import { useStore } from '@/store'
 import { adc } from '@/utils/format'
 import { pathMapToMenu } from '@/utils/mapmenus'
 import { useRoute, useRouter } from 'vue-router'
+import router from '@/router'
 
 export default defineComponent({
   props: {
@@ -68,8 +69,9 @@ export default defineComponent({
     const store = useStore()
     const userMenus = computed(() => store.state.login.userMenus)
     // router
-    const router = useRouter()
+
     const route = useRoute()
+    console.log('route', route)
     const currentPath = route.path
 
     // data
@@ -80,7 +82,7 @@ export default defineComponent({
     const defaultValue = ref(menu.id + '')
 
     const handleMenuItemClick = (item: any) => {
-      console.log('--------')
+      console.log('url', item.url)
       router.push({
         path: item.url ?? '/not-found'
       })
